@@ -1,0 +1,3 @@
+[submodule "assets-source"]
+	path = assets-source
+	url = git@github.com:lowviolencerpg/assets-source.git
