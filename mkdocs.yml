@@ -1,0 +1,37 @@
+site_name: Low Violence RPG Documentation
+site_url: https://lvr-project-docs.netlify.app
+site_description: >-
+  This website holds the documentation both for the design aspects of the Low Violence RPG Project,
+  as well as the technical aspects.
+repo_url: https://github.com/lowviolencerpg/game
+markdown_extensions:
+  - footnotes
+  - smarty
+  - toc:
+      permalink: True
+      separator: "_"
+      baselevel: 1
+  - sane_lists
+plugins:
+  - search:
+      indexing: "full"
+theme:
+  name: material
+  navigation_depth: 6
+nav:
+  - Home: index.md
+  - Core:
+      - core/index.md
+      - Tools:
+          - core/tools/minigame-manager.md
+          - core/tools/state-machine.md
+  - Design:
+      - design/index.md
+      - design/design-goals.md
+      - World:
+          - design/world/economy.md
+          - design/world/housing.md
+          - design/world/inhabitants.md
+          - design/world/magic.md
+          - design/world/politics.md
+          - design/world/technology.md
