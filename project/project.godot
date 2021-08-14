@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "Minigame",
+"language": "GDScript",
+"path": "res://core/tools/minigame-manager/Minigame.gd"
+}, {
+"base": "Node",
 "class": "State",
 "language": "GDScript",
 "path": "res://core/tools/state-machine/State.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://core/tools/state-machine/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"Minigame": "res://assets/editor/icons/minigame-manager/minigame.png",
 "State": "res://assets/editor/icons/state-machine/state.png",
 "StateMachine": "res://assets/editor/icons/state-machine/state-machine.png"
 }
@@ -28,6 +34,10 @@ _global_script_class_icons={
 
 config/name="Low Violence RPG"
 config/icon="res://assets/icon.png"
+
+[autoload]
+
+MinigameManager="*res://core/tools/minigame-manager/MinigameManager.gd"
 
 [physics]
 
