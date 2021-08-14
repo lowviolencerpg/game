@@ -5,7 +5,7 @@ onready var _state_machine: = _get_state_machine(self)
 
 func _get_state_machine(node: Node) -> Node:
 	if node != null and not node.is_in_group("state_machine"):
-		_get_state_machine(node.get_parent())
+		return _get_state_machine(node.get_parent())
 	return node
 
 var _parent: State = null

@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://core/tools/minigame-manager/Minigame.gd" type="Script" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Timer
+
+func _ready() -> void:
+	print(\"minigame loaded\")
+
+func try_to_end_minigame() -> void:
+	var minigame =  self.get_parent() as Minigame
+	print(\"requesting end of minigame...\")
+	minigame.end()
+	print(\"requested end of minigame\")
+
+
+
+func _on_Timer_timeout() -> void:
+	try_to_end_minigame()
+"
+
+[node name="TestMinigame" type="Node"]
+script = ExtResource( 1 )
+minigame_name = "testMinigame"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+script = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -116.0
+margin_top = -81.0
+margin_right = 116.0
+margin_bottom = 81.0
+text = "MINIGAME IS PRESENT"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_Timer_timeout"]

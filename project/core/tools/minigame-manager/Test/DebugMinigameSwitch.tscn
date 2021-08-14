@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+func _ready() -> void:
+	MinigameManager.register_minigame(\"testMinigame\", \"res://TestMinigame.tscn\")
+	print(\"Registered Minigame\")
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Timer
+
+func call_minigame() -> void:
+	var minigameLoadResponse = MinigameManager.load_minigame(\"testMinigame\")
+	print(\"Requested minigame load\", minigameLoadResponse)
+
+
+func _on_Timer_timeout() -> void:
+	call_minigame()
+"
+
+[node name="Spatial" type="Spatial"]
+
+[node name="SetupMinigame" type="Node" parent="."]
+script = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+script = SubResource( 2 )
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_Timer_timeout"]

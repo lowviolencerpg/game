@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://core/tools/state-machine/StateMachine.gd" type="Script" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends State
+
+func _ready() -> void:
+	._ready() # Call base State class ready function
+	print(\"State 1 ready called\")
+
+var physics_frames_counter = 10 ^ 8
+
+func unhandled_input(event: InputEvent) -> void:
+	pass
+
+func process(delta: float) -> void:
+	pass
+
+func physics_process(delta: float) -> void:
+	physics_frames_counter-=1
+	if physics_frames_counter <= 0:
+		_state_machine.transition_to(\"State2\", {a=\"1\"})
+
+func enter(message:Dictionary = {}) -> void:
+	print(\"State 1 entered\")
+	print(\"Reference state machine: \", _state_machine)
+
+func exit() -> void:
+	print(\"State 1 exited\")
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends State
+
+func _ready() -> void:
+	._ready() # Call base State class ready function
+	print(\"State 2 ready called\")
+
+func unhandled_input(event: InputEvent) -> void:
+	pass
+
+func process(delta: float) -> void:
+	pass
+
+func enter(message:Dictionary = {}) -> void:
+	print(\"State 2 entered\")
+"
+
+[node name="StateMachine" type="Node"]
+script = ExtResource( 1 )
+initial_state = NodePath("State1")
+
+[node name="State1" type="Node" parent="."]
+script = SubResource( 1 )
+
+[node name="State2" type="Node" parent="."]
+script = SubResource( 2 )
