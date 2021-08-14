@@ -15,9 +15,21 @@ markdown_extensions:
 plugins:
   - search:
       indexing: "full"
+      prebuild_index: true
+  - git-revision-date
 theme:
   name: material
+  icon: icon.png
+  favicon: icon.png
   navigation_depth: 6
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - search.suggest
+    - search.share
 nav:
   - Home: index.md
   - Core:
