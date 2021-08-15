@@ -47,3 +47,7 @@ nav:
           - design/world/magic.md
           - design/world/politics.md
           - design/world/technology.md
+      - Gameplay:
+          - Player:
+              - design/gameplay/player/movement.md
+              - design/gameplay/player/camera.md
