@@ -51,5 +51,4 @@ mesh = SubResource( 3 )
 [node name="CameraTarget" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
 
-[node name="PlayerCamera" parent="." instance=ExtResource( 3 )]
-_camera_look_target_path = NodePath("../CameraTarget")
+[node name="PlayerCamera" parent="CameraTarget" instance=ExtResource( 3 )]
