@@ -15,6 +15,16 @@ _global_script_classes=[ {
 "path": "res://core/tools/minigame-manager/Minigame.gd"
 }, {
 "base": "Node",
+"class": "PlayerCamera",
+"language": "GDScript",
+"path": "res://player/camera/Camera.gd"
+}, {
+"base": "State",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://player/PlayerState.gd"
+}, {
+"base": "Node",
 "class": "State",
 "language": "GDScript",
 "path": "res://core/tools/state-machine/State.gd"
@@ -26,6 +36,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Minigame": "res://assets/editor/icons/minigame-manager/minigame.png",
+"PlayerCamera": "res://assets/editor/icons/player-camera/player-camera.png",
+"PlayerState": "res://assets/editor/icons/state-machine/state.png",
 "State": "res://assets/editor/icons/state-machine/state.png",
 "StateMachine": "res://assets/editor/icons/state-machine/state-machine.png"
 }
