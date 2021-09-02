@@ -1,68 +1,50 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://core/tools/state-machine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://player/PlayerState.gd" type="Script" id=2]
 [ext_resource path="res://player/camera/Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/Player.gd" type="Script" id=4]
+[ext_resource path="res://player/states/Move.gd" type="Script" id=5]
+[ext_resource path="res://player/states/Idle.gd" type="Script" id=6]
+[ext_resource path="res://player/mesh_holder/MeshHolder.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
-
-[sub_resource type="PrismMesh" id=2]
-size = Vector3( 0.4, 0.6, 0.2 )
-
-[sub_resource type="CylinderMesh" id=3]
-top_radius = 0.4
-bottom_radius = 0.2
-height = 1.2
-radial_segments = 18
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 4 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource( 2 )
+initial_state = NodePath("Move")
 
 [node name="Move" type="Node" parent="StateMachine"]
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 
-[node name="Walk" type="Node" parent="StateMachine/Move"]
-script = ExtResource( 2 )
+[node name="Idle" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 6 )
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 2 )
 
-[node name="Crouch" type="Node" parent="StateMachine/Move"]
-script = ExtResource( 2 )
+[node name="Position3D" type="Position3D" parent="StateMachine/Move"]
+__meta__ = {
+"_editor_description_": "Debug only"
+}
+
+[node name="CSGSphere" type="CSGSphere" parent="StateMachine/Move/Position3D"]
+radius = 0.25
+radial_segments = 4
+rings = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9, 0 )
 shape = SubResource( 1 )
 
-[node name="MeshHolder" type="Spatial" parent="."]
-__meta__ = {
-"_editor_description_": "The mesh should have 1.8 units of height"
-}
-
-[node name="Head" type="CSGSphere" parent="MeshHolder"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-radius = 0.3
-radial_segments = 8
-rings = 5
-
-[node name="Nose" type="CSGMesh" parent="MeshHolder"]
-transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 1.5, -0.25 )
-mesh = SubResource( 2 )
-
-[node name="Body" type="CSGMesh" parent="MeshHolder"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
-mesh = SubResource( 3 )
+[node name="MeshHolder" parent="." instance=ExtResource( 7 )]
 
 [node name="CameraTarget" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
 
 [node name="PlayerCamera" parent="CameraTarget" instance=ExtResource( 3 )]
+follow_speed = 8.0
