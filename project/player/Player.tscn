@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://core/tools/state-machine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://player/PlayerState.gd" type="Script" id=2]
 [ext_resource path="res://player/camera/Camera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player/Player.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -17,12 +18,25 @@ height = 1.2
 radial_segments = 18
 
 [node name="Player" type="KinematicBody"]
+script = ExtResource( 4 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
+
+[node name="Walk" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 2 )
+
+[node name="Air" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 2 )
+
+[node name="Crouch" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
