@@ -1,11 +1,13 @@
 extends State
 class_name PlayerState, "res://assets/editor/icons/state-machine/state.png"
 
-onready var player : Player = self._state_machine.get_parent()
+func _init() -> void:
+	add_to_group("player_state")
 
-# export(NodePath) var mesh_nodepath
-# onready var mesh : Node = get_node(mesh_nodepath)
-
+var player : Player
+func set_player_reference(playerNode: Player):
+	player = playerNode
+	print("Set playernode")
 
 func physics_process(delta: float) -> void:
 	player.velocity += player.gravity * delta
