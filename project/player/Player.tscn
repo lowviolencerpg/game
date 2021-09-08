@@ -27,16 +27,6 @@ script = ExtResource( 6 )
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 2 )
 
-[node name="Position3D" type="Position3D" parent="StateMachine/Move"]
-__meta__ = {
-"_editor_description_": "Debug only"
-}
-
-[node name="CSGSphere" type="CSGSphere" parent="StateMachine/Move/Position3D"]
-radius = 0.25
-radial_segments = 4
-rings = 4
-
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9, 0 )
 shape = SubResource( 1 )

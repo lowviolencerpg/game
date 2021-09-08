@@ -4,7 +4,7 @@ export var max_speed := 12.0
 export var move_speed := 10.0
 export var gravity = -80.0
 export var jump_impulse = 25
-export(float, 0.1, 20.0, 0.1) var rotation_speed_factor := 0.5
+export(float, 0.1, 20.0, 0.1) var rotation_speed_factor := 2.5
 
 var velocity := Vector3.ZERO
 
@@ -29,7 +29,6 @@ func physics_process(delta: float) -> void:
 	if movement_direction:
 		var target_direction := player.transform.looking_at(player.global_transform.origin + movement_direction, Vector3.UP)
 		player.transform = player.transform.interpolate_with(target_direction, rotation_speed_factor * delta)
-		pos3d.global_transform.origin = player.global_transform.origin + movement_direction
 	# Movement
 	velocity = calculate_velocity(velocity, movement_direction, delta)
 	velocity = player.move_and_slide(velocity, Vector3.UP)
