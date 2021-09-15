@@ -1,12 +1,29 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://core/tools/state-machine/StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://player/PlayerState.gd" type="Script" id=2]
+[ext_resource path="res://player/states/Air.gd" type="Script" id=2]
 [ext_resource path="res://player/camera/Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/Player.gd" type="Script" id=4]
 [ext_resource path="res://player/states/Move.gd" type="Script" id=5]
 [ext_resource path="res://player/states/Idle.gd" type="Script" id=6]
 [ext_resource path="res://player/mesh_holder/MeshHolder.tscn" type="PackedScene" id=7]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends CanvasLayer
+
+
+
+onready var label = $Label
+
+func _ready() -> void:
+	yield(owner, \"ready\")
+	var state_machine := owner.state_machine as StateMachine
+	state_machine.connect(\"transitioned\", self, \"update_state\")
+
+func update_state(state_path: String, message: Dictionary) -> void:
+	print(state_path)
+	label.text = state_path
+"
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -26,6 +43,25 @@ script = ExtResource( 6 )
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 2 )
+
+[node name="DebugLayer" type="CanvasLayer" parent="StateMachine"]
+script = SubResource( 2 )
+
+[node name="Label" type="Label" parent="StateMachine/DebugLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -50.0
+margin_right = 40.0
+text = "<state>"
+align = 1
+valign = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9, 0 )

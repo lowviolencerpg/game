@@ -21,8 +21,6 @@ func unhandled_input(event: InputEvent) -> void:
 			jump_impulse = jump_impulse
 		})
 
-onready var pos3d := $Position3D
-
 func physics_process(delta: float) -> void:
 	var movement_direction = adjust_move_with_camera(get_input_direction(), player.camera.global_transform)
 	# Rotate

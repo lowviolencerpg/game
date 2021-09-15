@@ -1,7 +1,13 @@
 extends PlayerState
 
+var velocity := Vector3.ZERO
+var jump_impulse
+
+
 func enter(msg: Dictionary = {}) -> void:
-	_parent.velocity = Vector3.ZERO
+	match msg:
+		{ "velocity": var v, "jump_impulse": var ji}:
+			_parent.velocity = v + Vector3(0,ji,0)
 	_parent.enter()
 
 func exit() -> void:
@@ -12,7 +18,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	_parent.physics_process(delta)
-	if player.is_on_floor() and _parent.velocity.length() > 0.01:
-		_state_machine.transition_to("Move")
-	elif not player.is_on_floor():
-		_state_machine.transition_to("Move/Air")
+	if player.is_on_floor():
+		_state_machine.transition_to("Move/Idle")
+	elif player.is_on_ceiling():
+		_parent.velocity.y = 0
