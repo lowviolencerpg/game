@@ -10,6 +10,7 @@ export(Dictionary) var _zoom_limits := {
 export(float) var _zoom_sensitivity := 0.5
 
 func _process(delta: float) -> void:
+	mouse_target_zoom += (Input.get_action_strength('camera_zoom_out') - Input.get_action_strength('camera_zoom_in')) * _zoom_sensitivity
 	var clamped_zoom = clamp(mouse_target_zoom, _zoom_limits.minimum, _zoom_limits.maximum)
 	var interpolated_zoom = lerp(spring_length, clamped_zoom, 0.2)
 	spring_length = interpolated_zoom
