@@ -21,46 +21,49 @@ width = 100.0
 height = 1.0
 depth = 100.0
 
-[node name="0_1-bump" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.05, -8 )
+[node name="Bumps" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16 )
 
-[node name="CollisionShape" type="CollisionShape" parent="0_1-bump"]
+[node name="0_1-bump" type="StaticBody" parent="Bumps"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20004, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Bumps/0_1-bump"]
 shape = SubResource( 2 )
 
-[node name="CSGBox" type="CSGBox" parent="0_1-bump"]
+[node name="CSGBox" type="CSGBox" parent="Bumps/0_1-bump"]
 width = 4.0
 height = 0.1
 depth = 4.0
 
-[node name="0_2-bump" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.1, -8 )
+[node name="0_2-bump" type="StaticBody" parent="Bumps"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.20006, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="0_2-bump"]
+[node name="CollisionShape" type="CollisionShape" parent="Bumps/0_2-bump"]
 shape = SubResource( 2 )
 
-[node name="CSGBox" type="CSGBox" parent="0_2-bump"]
+[node name="CSGBox" type="CSGBox" parent="Bumps/0_2-bump"]
 width = 4.0
 height = 0.2
 depth = 4.0
 
-[node name="0_3-bump" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.15003, -8 )
+[node name="0_3-bump" type="StaticBody" parent="Bumps"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.20004, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="0_3-bump"]
+[node name="CollisionShape" type="CollisionShape" parent="Bumps/0_3-bump"]
 shape = SubResource( 2 )
 
-[node name="CSGBox" type="CSGBox" parent="0_3-bump"]
+[node name="CSGBox" type="CSGBox" parent="Bumps/0_3-bump"]
 width = 4.0
 height = 0.3
 depth = 4.0
 
-[node name="0_4-bump" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.20015, -8 )
+[node name="0_4-bump" type="StaticBody" parent="Bumps"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.2, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="0_4-bump"]
+[node name="CollisionShape" type="CollisionShape" parent="Bumps/0_4-bump"]
 shape = SubResource( 2 )
 
-[node name="CSGBox" type="CSGBox" parent="0_4-bump"]
+[node name="CSGBox" type="CSGBox" parent="Bumps/0_4-bump"]
 width = 4.0
 height = 0.4
 depth = 4.0
